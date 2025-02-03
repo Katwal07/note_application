@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:note_application/core/config/routes/routes_name.dart';
-import 'package:note_application/module/auth/login/login_screen.dart';
+import 'package:note_application/module/auth/login/presentation/login_screen.dart';
 import 'package:note_application/module/auth/register/presentation/regtister_screen.dart';
+import 'package:note_application/module/note_app/views/home_screen.dart';
 import 'package:note_application/module/start/onboard/presentation/on_boardingscreen.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -19,4 +20,6 @@ final GoRouter goRoute = GoRouter(
       GoRoute(
           path: RouteNames.register,
           builder: (context, state) => RegtisterScreen()),
+
+      GoRoute(path: RouteNames.homeScreen, builder: (context, state) => HomeScreen()),
     ]);

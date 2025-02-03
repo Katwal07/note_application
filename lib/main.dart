@@ -1,5 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_application/common/bloc/auth/auth_bloc.dart';
 import 'package:note_application/core/config/routes/app_routes.dart';
 import 'package:note_application/core/config/theme/colors.dart';
 
@@ -17,20 +19,27 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-              useMaterial3: true,
-              colorScheme: lightColorScheme,
-            ),
-            darkTheme: ThemeData(
-              useMaterial3: true,
-              colorScheme: darkColorScheme,
-            ),
-
-
-        routerConfig: goRoute, // ro router
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthenticateduserBloc>(
+          create: (context) => AuthenticateduserBloc(),
+        ),
+      ],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+                useMaterial3: true,
+                colorScheme: lightColorScheme,
+              ),
+              darkTheme: ThemeData(
+                useMaterial3: true,
+                colorScheme: darkColorScheme,
+              ),
+      
+      
+          routerConfig: goRoute, // ro router
+      ),
     );
   }
 }

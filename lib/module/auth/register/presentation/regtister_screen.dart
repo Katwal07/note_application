@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:note_application/common/widgets/app_bar.dart';
 import 'package:note_application/common/widgets/buttons.dart';
 import 'package:note_application/common/widgets/text_forms.dart';
 import 'package:note_application/core/config/routes/routes_name.dart';
@@ -13,9 +14,10 @@ class RegtisterScreen extends StatelessWidget {
     final TextEditingController _number = TextEditingController();
     final TextEditingController _passwordController = TextEditingController();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Register'),
-      ),
+      appBar: CustomAppbar.appBarStyle(context, 'Register'),
+      // appBar: AppBar(
+      //   title: const Text('Register'),
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
