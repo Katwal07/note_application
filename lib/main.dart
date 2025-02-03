@@ -6,11 +6,13 @@ import 'package:note_application/core/config/routes/app_routes.dart';
 import 'package:note_application/core/config/theme/colors.dart';
 
 void main() {
-  runApp(DevicePreview(
-    enabled: true,
+  runApp(
+    DevicePreview(
+      enabled: true,
       builder: (context) => const MyApp(),
-    // child: const MyApp()
-    ));
+      // child: const MyApp()
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -29,16 +31,15 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-                useMaterial3: true,
-                colorScheme: lightColorScheme,
-              ),
-              darkTheme: ThemeData(
-                useMaterial3: true,
-                colorScheme: darkColorScheme,
-              ),
-      
-      
-          routerConfig: goRoute, // ro router
+          useMaterial3: true,
+          colorScheme: lightColorScheme,
+        ),
+        darkTheme: ThemeData(
+          useMaterial3: true,
+          colorScheme: darkColorScheme,
+        ),
+
+        routerConfig: goRoute, // ro router
       ),
     );
   }
