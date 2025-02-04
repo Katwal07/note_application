@@ -4,6 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:note_application/common/bloc/auth/auth-event.dart';
 import 'package:note_application/common/bloc/auth/auth_bloc.dart';
 import 'package:note_application/common/bloc/auth/auth_state.dart';
+import 'package:note_application/common/bloc/password_visibility/password_toogle_bloc.dart';
+import 'package:note_application/common/bloc/password_visibility/password_toogle_event.dart';
+import 'package:note_application/common/bloc/password_visibility/password_toogle_state.dart';
 import 'package:note_application/common/widgets/app_bar.dart';
 
 import 'package:note_application/common/widgets/buttons.dart';
@@ -48,12 +51,37 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 20),
               Text('Enter your password',
                   style: TextFormFields.textStylesforForms(context)),
-              TextField(
-                controller: _passwordController,
-                decoration: TextFormFields.inputDecorationforPassword(
-                    context, 'Enter Password'),
-                obscureText: true,
-              ),
+              // TextField(
+              //   controller: _passwordController,
+              //   decoration: TextFormFields.inputDecorationforPassword(
+              //       context, 'Enter Password'),
+              //   obscureText: true,
+              // ),
+              BlocBuilder<ToogleBloc, ToogleState>(
+                        builder: (context, state) {
+                          return TextField(
+                            controller: _passwordController,
+                            obscureText: !state.isPasswordVisible,
+                            decoration:
+                                TextFormFields.inputDecorationWithSuffix(
+                              context,
+                              'Enter Password',
+                              IconButton(
+                                icon: Icon(
+                                  state.isPasswordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
+                                onPressed: () {
+                                  context
+                                      .read<ToogleBloc>()
+                                      .add(TogglePasswordVisibility());
+                                },
+                              ),
+                            ),
+                          );
+                        },
+                      ),
               const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
